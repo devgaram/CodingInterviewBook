@@ -12,6 +12,7 @@ package binarySearchTree;
  * - 노드의 갯수 N, 균형 잡힌 이진트리의 높이는 log₂N
  * - 한쪽 치우치는 경사 이진 트리의 경우 트리의 높이가 N이므로, 선형탐색 복잡도(O(N))와 같다
  */
+import java.util.*;
 public class BinarySearchTree {
 	private TreeNode root;
 
@@ -21,6 +22,10 @@ public class BinarySearchTree {
 
 	public TreeNode getRoot() {
 		return root;
+	}
+	
+	public void setRoot(TreeNode root) {
+		this.root = root;
 	}
 
 	// data 탐색
@@ -177,9 +182,25 @@ public class BinarySearchTree {
 			visit(root);
 		}	
 	}
+	
+	public void levelOrderTraversal() {
+		if (root != null) {
+			TreeNode node;
+			LinkedList q = new LinkedList();
+			q.add(root);
+			while (!q.isEmpty()) {
+				node= (TreeNode) q.removeFirst();
+				visit(node);
+				
+				if (node.getLeftSubNode() != null) q.add(node.getLeftSubNode());
+				if (node.getRightSubNode() != null) q.add(node.getRightSubNode());
+			}
+		}
+	}
 
 	public void visit(TreeNode node) {
-		System.out.print(node.getData() + " ");
+		if (node != null)
+			System.out.print(node.getData() + " ");
 	}
 
 
