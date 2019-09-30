@@ -1,4 +1,5 @@
-package dp;
+package question;
+
 
 import java.util.Scanner;
 
